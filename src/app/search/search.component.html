@@ -1,11 +1,11 @@
 <mat-form-field>
   <mat-label>Search country</mat-label>
-  <input matInput [matAutocomplete]="auto" [formControl]="selectedCountry" aria-label="Country">
+  <input matInput [matAutocomplete]="auto" [formControl]="selectedCountry" aria-label="Country" />
   <mat-autocomplete #auto="matAutocomplete">
     @for (country of filteredCountries | async; track country) {
-    <mat-option [value]="country.name" (click)="navigateToCountry(country.countryCode)">
-      {{country.name}}
-    </mat-option>
+      <mat-option [value]="country.name" (click)="navigateToCountry(country.countryCode)">
+        {{ country.name }}
+      </mat-option>
     }
   </mat-autocomplete>
 </mat-form-field>

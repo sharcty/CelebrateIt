@@ -1,1 +1,20 @@
-<p>country-page works!</p>
+<h2>{{ countryCode }} {{ currentYear }}</h2>
+
+<mat-button-toggle-group [formControl]="yearControl" aria-label="Year">
+  @for (year of years; track year) {
+    <mat-button-toggle value="{{ year }}">{{ year }}</mat-button-toggle>
+  }
+</mat-button-toggle-group>
+
+<mat-list>
+  @if (countryHolidays$ | async; as holidays) {
+    @for (holiday of holidays; track holiday.name) {
+      <mat-list-item>
+        <span matListItemTitle>{{ holiday.name }}</span>
+        <span matListItemLine>{{ holiday.date }}</span>
+        <span matListItemLine>{{ holiday.types }}</span>
+      </mat-list-item>
+      <hr />
+    }
+  }
+</mat-list>

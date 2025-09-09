@@ -5,7 +5,7 @@ import { CelebratingService } from '../celebrating.service';
 import { Country } from '../core/models/country';
 import { Holiday } from '../core/models/holiday';
 import { MatCardModule } from '@angular/material/card';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
