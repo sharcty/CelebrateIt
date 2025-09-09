@@ -1,0 +1,15 @@
+@if (countriesByCode$ | async; as countriesByCode) {
+  @if (randomHolidays$ | async; as holidays) {
+    @for (holiday of holidays; track holiday.countryCode) {
+      <mat-card class="widget-card" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>{{ holiday.name }}</mat-card-title>
+          <mat-card-subtitle>{{ holiday.date }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          {{ countriesByCode.get(holiday.countryCode) }}
+        </mat-card-content>
+      </mat-card>
+    }
+  }
+}
