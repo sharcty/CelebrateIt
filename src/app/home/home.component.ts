@@ -5,10 +5,12 @@ import { CelebratingService } from '../celebrating.service';
 import { Country } from '../core/models/country';
 import { Holiday } from '../core/models/holiday';
 import { MatCardModule } from '@angular/material/card';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [AsyncPipe, MatCardModule],
+  standalone: true,
+  imports: [AsyncPipe, MatCardModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

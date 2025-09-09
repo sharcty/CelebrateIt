@@ -1,12 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HomeComponent } from './home/home.component';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+import { SearchComponent } from './search/search.component';
+
 @Component({
   selector: 'app-root',
-  imports: [HomeComponent],
+  imports: [RouterOutlet, SearchComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   title = 'CelebrateIt';
+  router = inject(Router);
 }
