@@ -1,59 +1,176 @@
+
 # CelebrateIt
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+A modern Angular application that helps you discover public holidays from countries around the world. Built with Angular 19 and Angular Material for a beautiful, responsive user experience.
 
-## Development server
 
-To start a local development server, run:
+## Features
 
-```bash
-ng serve
-```
+- **🌍 Global Holiday Discovery**: Browse public holidays from countries worldwide
+- **🔍 Smart Search**: Find countries quickly with autocomplete search functionality
+- **📱 Year Navigation**: Explore holidays for different years (current year ± 5 years)
+- **⚡ Real-time Data**: Fetches live holiday data from the Nager.Date API
+- **🔄 Random Holiday Showcase**: Discover interesting holidays from around the world
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Screenshots
 
-```bash
-ng generate component component-name
-```
+![App Screenshot](https://drive.usercontent.google.com/download?id=1xAu4q5r2lGxyflUmzoRyJuhcQaShdzQr&export=view&authuser=0)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+![App Screenshot](https://drive.usercontent.google.com/download?id=1eG-cTdy7iQ2aP2SIXwjYIbl3n9GsPnx_&export=view&authuser=0)
 
-```bash
-ng generate --help
-```
+![App Screenshot](https://drive.usercontent.google.com/download?id=1Zh15gK4yWwUfO3Z4FObucJlkNSq-o3hZ&export=view&authuser=0)
 
-## Building
+![App Screenshot](https://drive.google.com/uc?export=view&id=10ZOkfl88MwqA5IHE6x37y4EwHixVijsK)
 
-To build the project run:
 
-```bash
-ng build
-```
+## Tech Stack
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- **Frontend Framework**: Angular 19
+- **UI Library**: Angular Material 19
+- **Language**: TypeScript 5.7
+- **Styling**: SCSS
+- **State Management**: RxJS Observables
+- **Routing**: Angular Router
+- **Forms**: Angular Reactive Forms
+- **Linting**: ESLint with Prettier
+- **Build Tool**: Angular CLI
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Run Locally
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Clone the project
 
 ```bash
-ng e2e
+  git clone https://link-to-project
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Go to the project directory
 
-## Additional Resources
+```bash
+  cd my-project
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
+Open your browser
+
+Navigate to `http://localhost:4200` to view the application.
+## Environment Variables
+
+The application uses environment configuration files located in `src/environments/`:
+
+### Production Environment (`environment.ts`)
+```typescript
+export const environment = {
+  API_URL: 'https://date.nager.at/api/v3',
+};
+```
+
+### Development Environment (`environment.development.ts`)
+```typescript
+export const environment = {
+  API_URL: 'https://date.nager.at/api/v3',
+};
+```
+
+## API Reference
+The application integrates with the [Nager.Date API](https://date.nager.at/) to fetch holiday data.
+
+### Endpoints Used
+
+#### Get Available Countries
+```http
+GET https://date.nager.at/api/v3/AvailableCountries
+```
+Returns a list of all available countries with their country codes.
+
+**Response:**
+```json
+[
+  {
+    "countryCode": "US",
+    "name": "United States"
+  }
+]
+```
+
+#### Get Public Holidays for a Country
+```http
+GET https://date.nager.at/api/v3/PublicHolidays/{year}/{countryCode}
+```
+
+**Parameters:**
+- `year` (number): The year to fetch holidays for
+- `countryCode` (string): ISO 3166-1 alpha-2 country code
+
+**Response:**
+```json
+[
+  {
+    "date": "2024-01-01",
+    "localName": "New Year's Day",
+    "name": "New Year's Day",
+    "countryCode": "US",
+    "fixed": true,
+    "global": true,
+    "counties": null,
+    "launchYear": null,
+    "types": ["Public"]
+  }
+]
+```
+
+#### Get Next Public Holidays Worldwide
+```http
+GET https://date.nager.at/api/v3/NextPublicHolidaysWorldwide
+```
+Returns upcoming public holidays from around the world.
+
+### Data Models
+
+#### Country Interface
+```typescript
+interface Country {
+  countryCode: string;
+  name: string;
+}
+```
+
+#### Holiday Interface
+```typescript
+interface Holiday {
+  date: string;
+  localName: string;
+  name: string;
+  countryCode: string;
+  fixed: boolean;
+  global: boolean;
+  counties: string[] | null;
+  launchYear: number | null;
+  types: string[];
+}
+```
+
+
+## Acknowledgements
+
+- [Nager.Date API](https://date.nager.at/) for providing comprehensive holiday data
+- Angular Material team for the excellent UI components
+- The Angular team for the amazing framework
+
+---
+
+Made with ❤️ using Angular
+
